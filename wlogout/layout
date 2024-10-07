@@ -1,0 +1,20 @@
+{
+    "label" : "lock",
+    "action" : "gtklock",
+    "text" : "",
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "",
+}
+{
+    "label" : "suspend",
+    "action" : "gtklock --daemonize && systemctl suspend",
+    "text" : "",
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "",
+}

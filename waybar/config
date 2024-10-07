@@ -1,0 +1,103 @@
+{   "layer": "top",
+    "position": "bottom",
+    "height": 40,
+    "width": 1920,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "output": "DP-3",
+    "modules-left": ["custom/logo", "cpu", "temperature", "memory"],
+    "modules-center": ["wlr/taskbar"],
+    "modules-right": ["custom/swaync", "tray", "backlight", "pulseaudio", "clock", "custom/power"],
+
+    "custom/logo": {
+        "format": "󰣇 ",
+        "interval": "once",
+        "tooltip": false,
+        "on-click": "rofi -show drun",
+        "on-click-right": "wlogout -b 2"
+    },
+     "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 25,
+        "icon-theme": "Papirus-Dark",
+        "tooltip-format": "{title}",
+        "on-click": "minimize-raise",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "waybar"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        },
+        "rewrite": {
+            "Firefox Web Browser": "Firefox",
+            "Foot Server": "Terminal"
+        }
+    },
+   "custom/swaync": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": " <span foreground='red'><small><sup>⬤</sup></small></span>",
+            "none": " ",
+            "dnd-notification": "  <span foreground='red'><small><sup>⬤</sup></small></span>",
+            "dnd-none": " "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+        "escape": true
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 15
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon}󰂯 {volume}%",
+        "format-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["", " ", " "]
+        },
+        "scroll-step": 1,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip": false
+    },
+	"custom/power": {
+		"format": " ",
+		"on-click": "wlogout -b 2"
+	},
+    "cpu": {
+        "interval": 15,
+        "format": "  {}%",
+        "max-length": 10
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "󰑭 {used}GiB",
+        "max-length": 13
+    }
+}
